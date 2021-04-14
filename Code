@@ -1,0 +1,35 @@
+void helper(vector<string> &v, int row, int col)
+{
+    if(row<0 || row>=v.size() || col<0 || col>=v[0].size())
+    {
+        return;
+    }
+    if(v[row][col]=='O')
+    {
+        return;
+    }
+    v[row][col]='O';
+    helper(v,row-1,col);
+    helper(v,row+1,col);
+    helper(v,row,col+1);
+    helper(v,row,col-1);
+    return;
+    
+    
+}
+int Solution::black(vector<string> &v) {
+    
+    int ans=0;
+    for(int i=0;i<v.size();i++)
+    {
+        for(int j=0;j<v[0].size();j++)
+        {
+            if(v[i][j]=='X')
+            {
+                ans++;
+                helper(v,i,j);
+            }
+        }
+    }
+    return ans;
+}
